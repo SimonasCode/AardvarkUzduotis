@@ -1,51 +1,58 @@
-﻿using OpenQA.Selenium;
+﻿using Framework;
+using Framework.POM;
+using OpenQA.Selenium;
+using OpenQA.Selenium.DevTools.V109.LayerTree;
+using OpenQA.Selenium.DevTools.V109.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
-namespace Framework.POM
+namespace Framework
 {
     public class HomePage
     {
-        private static string url = "https://demo.betgames.tv/";
-        private static string language = "//*[@id='language']";
-        private static string lithuanian = "//*[@id = 'language']//div[@class = 'dropdown-menu multi-column']//div[@class = 'col-md-4 col-xs-4'][2]//ul[@class = 'dropdown-menu']/li[10]/a";
-        private static string EnterMessage = "//*[@id='message']";
-        private static string emailEnter = "//*[@id='email']";
-        private static string clicksendButton = "//form[@id = 'contact']//button[@class = 'send btn btn-primary pull-left']";
+        private static string url = "https://ito.lt/";
+        private static string servicesButton = "//*[@id='services-dropdown']";
+        private static string atlassianSolutionsButton = "//div[@aria-labelledby='services-dropdown']//a[@class='dropdown-item mb-1 py-2'][1]";
+        private static string careerButton = "//a[@angularticslabel='Career']";
+        private static string portfolioButton = "//a[@angularticslabel='Portfolio']";
+        private static string androidButton = "//*[@id='portfolio']/div/div[1]/div/div/div/div[2]/label/span[2]";
+        private static string loadMoreButton = "//button[@angularticsaction='LoadMoreLeisureGalleryItems']";
+
         public static void Open()
         {
             Driver.OpenPage(url);
-            //Common.ClickElement("");
-            //Driver.GetDriver().FindElement(By.XPath("")).Click();
         }
 
-        public static void LanguageButton()
+        public static void clickServicesButton()
         {
-            Common.ClickElement(language);
+            Common.ClickElement(servicesButton);
         }
-
-        public static void ChooseLithunianLanguage()
+        public static void clickAtlassiansSolutionButton()
         {
-            Common.ClickElement(lithuanian);
+            Common.ClickElement(atlassianSolutionsButton);
         }
-
-        public static void SendMessage(string text)
+        public static void clickCareerButton()
         {
-            Common.EnterText(EnterMessage, text);
+            Common.ClickElement(careerButton);
         }
-
-        public static void EnterEmailadress(string email)
+        public static void clickPortfolioButton()
         {
-            Common.EnterText(emailEnter, email);
+            Common.ClickElement(portfolioButton);
         }
-
-        public static void ClickSendMessage()
+        public static void clickAndroidButton()
         {
-            Common.ClickElement(clicksendButton);
+            Common.ClickElement(androidButton);
+        }
+        public static void clickLoadMoreButtonInHowWeSpendOurLeisure()
+        {
+            Common.ClickElement(loadMoreButton);
+        }
+        public static void waitForElementToBeClickable()
+        {
+            Common.WaitForElementToBeClickable(loadMoreButton);
         }
     }
 }

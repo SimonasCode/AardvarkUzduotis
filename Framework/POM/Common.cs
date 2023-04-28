@@ -1,10 +1,13 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
+using System.Xml.Linq;
 
 namespace Framework.POM
 {
@@ -17,7 +20,7 @@ namespace Framework.POM
 
         public static void ClickElement(string locator)
         {
-           GetElement(locator).Click();
+            GetElement(locator).Click();
         }
 
         public static void SendKeys(string locator, string keys)
@@ -32,5 +35,20 @@ namespace Framework.POM
             element.Clear();
             element.SendKeys(text);
         }
+        internal static void ClickEnterButton(string locator)
+        {
+            IWebElement element = GetElement(locator);
+            element.SendKeys(Keys.Enter);
+        }
+
+        internal static void WaitForElementToBeClickable(string cancelButton)
+        {
+            WebDriverWait wait = new WebDriverWait(Driver.GetDriver(), TimeSpan.FromSeconds(15));
+        }
+        public static IWebElement GetElements(string locator)
+        {
+            return Driver.GetDriver().FindElement(By.XPath(locator));
+        }
+
     }
 }
